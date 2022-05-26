@@ -1,18 +1,27 @@
+from mailbox import NoSuchMailboxError
+from unittest import loader
 from django.template import Template, Context
+from django.template import loader
 from django.http import HttpResponse
 import datetime
 
+class Persona(object):
+
+    def __init__(self, nombre, apellido):
+
+        self.nombre=nombre
+        self.apellido=apellido
+
 def saludo(request):
-    
-    doc_externo=open("C:/Users/Usuario/Desktop/ProyectosDjango/DjangoProyecto1/DjangoProyecto1/Plantilla1.html")
-    
-    plt=Template(doc_externo.read())
 
-    doc_externo.close()
+    p1=Persona("Damian", "Ramos")
+    temascurso=["Plantillas","Modelos","Formularios","Vistas","Despliegue"]
+    ahora = datetime.datetime.now()
 
-    ctx= Context()
+    doc_externo = loader.get_template ("miplantilla.html") #no me toma el get template :(
 
-    documento = plt.render(ctx)
+    documento = doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "horario":ahora, "temas":temascurso}) 
+    #De esta manera se muestra en pantalla usando la plantilla HTML, sin usar contexto y cargado a la "web"
 
     return HttpResponse(documento)
 

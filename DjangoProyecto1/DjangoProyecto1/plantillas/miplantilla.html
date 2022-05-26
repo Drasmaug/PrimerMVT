@@ -1,0 +1,35 @@
+<html>
+    <body>
+    <h1 style="color: red"> 
+    Primera Plantilla de testing
+    </h1>
+
+    {% if nombre_persona == "Damian" and apellido_persona == "Ramos" %}
+
+    <p>El es el programador </p>
+
+    {% else %}
+
+    <p>Bienvenido usuario</p>
+
+    {% endif %}
+
+    <p>El nombre de la persona es : {{nombre_persona.capitalize}} {{apellido_persona.capitalize}}
+    </p>
+    <p>El horario exacto de este d&iacute;a actual es {{horario.day}}/{{horario.month}}/{{horario.year}}</p>
+    <p><strong>Temas del Curso:</strong></p>
+    <p>
+        <ul>
+        {% if temas %}
+            {% for eltema in temas %}
+
+                <li>{{eltema}}</li>
+
+            {% endfor %}
+        {% else %}
+            <p>No hay elementos que mostrar</p>
+        {% endif %}
+        </ul>
+    </p>
+    </body>
+</html>
